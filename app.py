@@ -180,16 +180,7 @@ st.markdown("""
         border-radius: 999px;
     }
 
-    /* ── MARK DONE BUTTON ── */
-    .stButton > button {
-        background: #1a1f35;
-        color: #00d4ff;
-        border: 1px solid #2a2f4a;
-        border-radius: 8px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 4px 12px;
-        transition: all 0.2s;
+    
     }
     .stButton > button:hover {
         background: #00d4ff;
@@ -333,8 +324,9 @@ else:
                                 <span class="subject-time">⏱ {session['minutes']} mins</span>
                             </div>
                         """, unsafe_allow_html=True)
-                        if st.button("✅ Mark Done", key=f"{day}_{i}"):
-                            idx = data["schedule"].index(session)
-                            data["schedule"][idx]["completed"] = True
-                            save_updated_schedule(data)
-                            st.rerun()
+                        toggle = st.toggle("Done", key=f"{day}_{i}", value=session["completed"])
+if toggle != session["completed"]:
+    idx = data["schedule"].index(session)
+    data["schedule"][idx]["completed"] = toggle
+    save_updated_schedule(data)
+    st.rerun()
