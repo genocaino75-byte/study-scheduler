@@ -1,0 +1,4 @@
+.env
+data/study_log.json
+_pycache__/
+*.pyc
