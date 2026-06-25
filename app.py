@@ -226,7 +226,12 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
+toggle = st.toggle("Done", key=f"{day}_{i}", value=session["completed"])
+                        if toggle != session["completed"]:
+                            idx = data["schedule"].index(session)
+                            data["schedule"][idx]["completed"] = toggle
+                            save_updated_schedule(data)
+                            st.rerun()
 # ── HEADER ──
 st.markdown("""
     <div class="app-header">
