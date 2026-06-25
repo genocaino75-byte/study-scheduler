@@ -69,7 +69,7 @@ st.markdown("""
 
     /* ── DAY HEADER ── */
     .day-header {
-        color: #00d4ff;
+        color: #FF6B35;
         font-size: 1rem;
         font-weight: 700;
         letter-spacing: 0.08em;
