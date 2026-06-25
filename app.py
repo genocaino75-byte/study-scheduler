@@ -33,7 +33,6 @@ st.markdown("""
         padding-bottom: 2rem;
     }
 
-    /* ── HEADER ── */
     .app-header {
         background: linear-gradient(135deg, #1a1f35 0%, #0d1021 100%);
         border: 1px solid #2a2f4a;
@@ -67,7 +66,6 @@ st.markdown("""
         letter-spacing: 0.05em;
     }
 
-    /* ── DAY HEADER ── */
     .day-header {
         color: #FF6B35;
         font-size: 1rem;
@@ -79,7 +77,6 @@ st.markdown("""
         border-bottom: 1px solid #1e2540;
     }
 
-    /* ── SESSION CARDS ── */
     .session-card {
         background: linear-gradient(135deg, #141828 0%, #1a1f35 100%);
         border: 1px solid #2a2f4a;
@@ -150,7 +147,6 @@ st.markdown("""
         margin-left: 6px;
     }
 
-    /* ── SIDEBAR ── */
     [data-testid="stSidebar"] {
         background: #0d1021;
         border-right: 1px solid #1e2540;
@@ -170,7 +166,6 @@ st.markdown("""
         opacity: 0.85;
     }
 
-    /* ── PROGRESS BAR ── */
     .stProgress > div > div {
         background: linear-gradient(90deg, #7c5cfc, #00d4ff);
         border-radius: 999px;
@@ -180,15 +175,6 @@ st.markdown("""
         border-radius: 999px;
     }
 
-    
-    }
-    .stButton > button:hover {
-        background: #00d4ff;
-        color: #0a0c13;
-        border-color: #00d4ff;
-    }
-
-    /* ── METRIC ── */
     [data-testid="stMetric"] {
         background: #141828;
         border: 1px solid #2a2f4a;
@@ -200,12 +186,10 @@ st.markdown("""
         font-weight: 800 !important;
     }
 
-    /* ── DIVIDER ── */
     hr {
         border-color: #1e2540 !important;
     }
 
-    /* ── INFO BOX ── */
     .stInfo {
         background: #141828;
         border: 1px solid #2a2f4a;
@@ -213,7 +197,6 @@ st.markdown("""
         border-radius: 10px;
     }
 
-    /* ── WEEK LABEL ── */
     .week-label {
         color: #6b7280;
         font-size: 0.85rem;
@@ -226,12 +209,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-toggle = st.toggle("Done", key=f"{day}_{i}", value=session["completed"])
-                        if toggle != session["completed"]:
-                            idx = data["schedule"].index(session)
-                            data["schedule"][idx]["completed"] = toggle
-                            save_updated_schedule(data)
-                            st.rerun()
+
 # ── HEADER ──
 st.markdown("""
     <div class="app-header">
@@ -330,8 +308,8 @@ else:
                             </div>
                         """, unsafe_allow_html=True)
                         toggle = st.toggle("Done", key=f"{day}_{i}", value=session["completed"])
-if toggle != session["completed"]:
-    idx = data["schedule"].index(session)
-    data["schedule"][idx]["completed"] = toggle
-    save_updated_schedule(data)
-    st.rerun()
+                        if toggle != session["completed"]:
+                            idx = data["schedule"].index(session)
+                            data["schedule"][idx]["completed"] = toggle
+                            save_updated_schedule(data)
+                            st.rerun()
