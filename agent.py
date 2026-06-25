@@ -2,11 +2,14 @@ import anthropic
 import json
 import os
 from dotenv import load_dotenv
-from scheduler import SUBJECTS, STUDY_DAYS, save_schedule
+import streamlit as st
 
 load_dotenv()
 
-client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+# Works locally (.env) AND on Streamlit Cloud (st.secrets)
+api_key = os.getenv("ANTHROPIC_API_KEY") or st.secrets.get("ANTHROPIC_API_KEY")
+
+client = anthropic.Anthropic(api_key=api_key)
 
 def generate_ai_schedule():
     subjects_text = "\n".join([
