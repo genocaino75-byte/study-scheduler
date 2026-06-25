@@ -185,7 +185,21 @@ st.markdown("""
         color: #00d4ff !important;
         font-weight: 800 !important;
     }
-
+/* ── TOGGLE ── */
+    .stToggle label p {
+        color: #ffffff !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+    }
+    div[data-testid="stToggle"] label {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+    div[data-testid="stToggle"] p {
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
     hr {
         border-color: #1e2540 !important;
     }
