@@ -33,6 +33,7 @@ st.markdown("""
         padding-bottom: 2rem;
     }
 
+    /* ── HEADER ── */
     .app-header {
         background: linear-gradient(135deg, #1a1f35 0%, #0d1021 100%);
         border: 1px solid #2a2f4a;
@@ -66,8 +67,9 @@ st.markdown("""
         letter-spacing: 0.05em;
     }
 
+    /* ── DAY HEADER ── */
     .day-header {
-        color: #FF6B35;
+        color: #00d4ff;
         font-size: 1rem;
         font-weight: 700;
         letter-spacing: 0.08em;
@@ -77,6 +79,7 @@ st.markdown("""
         border-bottom: 1px solid #1e2540;
     }
 
+    /* ── SESSION CARDS ── */
     .session-card {
         background: linear-gradient(135deg, #141828 0%, #1a1f35 100%);
         border: 1px solid #2a2f4a;
@@ -147,6 +150,7 @@ st.markdown("""
         margin-left: 6px;
     }
 
+    /* ── SIDEBAR ── */
     [data-testid="stSidebar"] {
         background: #0d1021;
         border-right: 1px solid #1e2540;
@@ -166,6 +170,7 @@ st.markdown("""
         opacity: 0.85;
     }
 
+    /* ── PROGRESS BAR ── */
     .stProgress > div > div {
         background: linear-gradient(90deg, #7c5cfc, #00d4ff);
         border-radius: 999px;
@@ -175,6 +180,24 @@ st.markdown("""
         border-radius: 999px;
     }
 
+    /* ── MARK DONE BUTTON ── */
+    .stButton > button {
+        background: #1a1f35;
+        color: #00d4ff;
+        border: 1px solid #2a2f4a;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 4px 12px;
+        transition: all 0.2s;
+    }
+    .stButton > button:hover {
+        background: #00d4ff;
+        color: #0a0c13;
+        border-color: #00d4ff;
+    }
+
+    /* ── METRIC ── */
     [data-testid="stMetric"] {
         background: #141828;
         border: 1px solid #2a2f4a;
@@ -185,25 +208,13 @@ st.markdown("""
         color: #00d4ff !important;
         font-weight: 800 !important;
     }
-/* ── TOGGLE ── */
-    .stToggle label p {
-        color: #ffffff !important;
-        font-size: 0.85rem !important;
-        font-weight: 600 !important;
-        opacity: 1 !important;
-    }
-    div[data-testid="stToggle"] label {
-        color: #ffffff !important;
-        opacity: 1 !important;
-    }
-    div[data-testid="stToggle"] p {
-        color: #ffffff !important;
-        opacity: 1 !important;
-    }
+
+    /* ── DIVIDER ── */
     hr {
         border-color: #1e2540 !important;
     }
 
+    /* ── INFO BOX ── */
     .stInfo {
         background: #141828;
         border: 1px solid #2a2f4a;
@@ -211,6 +222,7 @@ st.markdown("""
         border-radius: 10px;
     }
 
+    /* ── WEEK LABEL ── */
     .week-label {
         color: #6b7280;
         font-size: 0.85rem;
@@ -321,9 +333,8 @@ else:
                                 <span class="subject-time">⏱ {session['minutes']} mins</span>
                             </div>
                         """, unsafe_allow_html=True)
-                        toggle = st.toggle("Done", key=f"{day}_{i}", value=session["completed"])
-                        if toggle != session["completed"]:
+                        if st.button("✅ Mark Done", key=f"{day}_{i}"):
                             idx = data["schedule"].index(session)
-                            data["schedule"][idx]["completed"] = toggle
+                            data["schedule"][idx]["completed"] = True
                             save_updated_schedule(data)
                             st.rerun()
